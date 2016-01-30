@@ -1,0 +1,13 @@
+<div class="container">
+  <% if @events.any? %>
+    <ul class="list-group">
+      <% @events.each do |event| %>
+        <li class="list-group-item"> <span class="title"><%= link_to event.title, event_path(event)%></span>
+          <%= link_to "Delete", event_path(event), :data => {:confirm => "Are you sure?",
+          :method => "delete"}, class: 'pull-right' %> </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3>You have no events</h3>
+  <% end %>
+</div>
