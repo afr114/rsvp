@@ -2,7 +2,8 @@ class Location < ActiveRecord::Base
 
 
   attr_accessor :full_address
-  belongs_to :movie
+  belongs_to :event
+  belongs_to :guest
 
   geocoded_by :full_address
   after_validation :geocode
