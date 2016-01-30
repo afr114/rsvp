@@ -1,3 +1,4 @@
+
 <div class="container">
   <h1><%= @event.title %></h1>
   <% if @locations.any? %>
@@ -11,6 +12,18 @@
     <h3>You have no locations for this event</h3>
   <% end %>
 </div>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+handler.infobox = function(boxText) {
+ return {
+    content: boxText
+}};
+</script>
 
 <div class="container">
   <h1>Guest List</h1>
@@ -35,6 +48,8 @@
         <%= label_tag 'email', ' Guest Email' %>
         <%= email_field_tag 'email' %>
     </div>
+    <%=hidden_field_tag :event_id, params[:id] %>
+
     <%= submit_tag "Invite Guest", class: 'btn btn-default' %>
     <% end %>
     </div>
