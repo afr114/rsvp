@@ -14,5 +14,24 @@
 
 <div class="container">
   <h1>Guest List</h1>
+  <% if @guests.any? %>
+  <ul>
+    <% @guests.each do |guest| %>
+    <li> <%= guest.first_name %> </li>
+    <% end %>
+  <% else %>
+  <p>No Guests Yet</p>
+  </ul>
+  <% end %>
+
+  <div class="guest">
+    <%= form_tag(invite_mailer_path) do %>
+    <div class="form-group">
+        <%= label_tag 'email', 'Email' %>
+        <%= email_field_tag 'email',  class: 'form-control', placeholder: 'Your Email Address' %>
+    </div>
+    <%= submit_tag "Invite Guest", class: 'btn btn-default' %>
+    <% end %>
+    </div>
 
 </div>

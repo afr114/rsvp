@@ -1,9 +1,9 @@
 class InviteMailer < ApplicationMailer
-  def daily_report(student, report, teacher)
+  def invite_guest(email)
+    email = email
 
 
-
-    mail to: 
+    mail to: email subject: "Test"
   end
 
 end
