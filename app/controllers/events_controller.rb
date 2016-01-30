@@ -19,8 +19,14 @@ class EventsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @event = Event.find(params[:id])
     @locations = @event.locations
+    @guests = []
+    @event.guests.each do |guest|
+      user = guest.user
+      @guests.push(user)
+    end
   end
 
   def edit
