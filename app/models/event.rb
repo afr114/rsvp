@@ -3,5 +3,6 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_many :guests
+  has_many :locations
   belongs_to :user
 end

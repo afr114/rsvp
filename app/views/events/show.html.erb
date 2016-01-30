@@ -1,0 +1,12 @@
+<div class="container">
+  <h1><%= @event.title %></h1>
+  <% if @locations.any? %>
+    <ul class="list-group">
+      <% @locations.each do |location| %>
+        <li class="list-group-item"> <span class="title"><%= location.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3>You have no locations for this event</h3>
+  <% end %>
+</div>
