@@ -19,3 +19,12 @@ body {
   font-family: stackyard;
   font-size: 3em;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 400px;
+}
