@@ -11,18 +11,12 @@ button.navbar-toggle.collapsed {
 }
 
 section#above-the-fold {
-  height: 550px;
+  height: 500px;
   margin-top: 50px;
+  background: url("bridegroom-min.jpg");
+  background-size:cover;
 }
 
 .container{
   height: inherit;
 }
-
-var  = {
- +  url: "/inputurl",
- +  send: function() {
- +    var data = email: $("#contribution_email").val() };
- +    $.get(url, data, function(data, status, response)
- +    }
- +};

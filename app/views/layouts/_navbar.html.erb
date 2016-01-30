@@ -22,7 +22,7 @@
         </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <li><button type="button" class="btn btn-primary navbar-btn"><%= link_to 'Sign up', new_user_registration_path %></button></li>
           <li> <%= link_to "Sign In", new_user_session_path %> </li>
         </ul>
       <% end %>
