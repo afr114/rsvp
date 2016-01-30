@@ -1,0 +1,11 @@
+<h1>Sign up for RSVP</h1>
+
+<p>Hello <%= @name %>!</p>
+
+<p> <%= @event.user.first_name %> has invited you to <%= @event.title %>! Check out the event details at RSVP. See the guest list and plan your travels around your friends plans.
+
+</p>
+<p>
+  Sign up for RSVP:
+</p>
+<%= link_to "Sign up for RSVP", new_user_registration_path(:event => @event.id)  %>
