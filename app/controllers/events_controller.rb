@@ -1,6 +1,14 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
   def index
-    @events = Event.all
+    @user = current_user
+    @events = @user.events.all
+
+  end
+
+  def show
+    @user = current_user
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -14,6 +22,7 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render :new
+    end
   end
 
   def edit
