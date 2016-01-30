@@ -3,27 +3,15 @@
   <h1><%= @event.title %></h1>
   <% if @locations.any? %>
     <ul class="list-group">
+      <li class="list-group-item"id="map"></li>
       <% @locations.each do |location| %>
         <li class="list-group-item"><%= location.name %></li>
       <% end %>
-      <li class="list-group-item"id="map"></li>
     </ul>
   <% else %>
     <h3>You have no locations for this event</h3>
   <% end %>
 </div>
-<script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-handler.infobox = function(boxText) {
- return {
-    content: boxText
-}};
-</script>
 
 <div class="container">
   <h1>Guest List</h1>
@@ -57,10 +45,10 @@ handler.infobox = function(boxText) {
 </div>
 
 <script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
 </script>

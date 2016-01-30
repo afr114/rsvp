@@ -1,5 +1,25 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@font-face {
+    font-family: gravity;
+    src: url(/assets/Gravity-Regular.otf) format("truetype");
+}
+
+@font-face {
+    font-family: stackyard;
+    src: url(/assets/stackyard.ttf) format("truetype");
+}
+
+body {
+  font-family: gravity;
+}
+
+.navbar-brand {
+  font-family: stackyard;
+  font-size: 3em;
+}
+
 html, body {
   height: 100%;
   margin: 0;
