@@ -1,2 +1,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+nav.navbar.navbar-fixed-top {
+  background-color: rgb(255, 255, 255);
+  border-color: #ddd;
+}
+
+button.navbar-toggle.collapsed {
+  border-color: #ddd;
+}
+
+section#above-the-fold {
+  height: 550px;
+  margin-top: 50px;
+}
+
+.container{
+  height: inherit;
+}
+
+var  = {
+ +  url: "/inputurl",
+ +  send: function() {
+ +    var data = email: $("#contribution_email").val() };
+ +    $.get(url, data, function(data, status, response)
+ +    }
+ +};
