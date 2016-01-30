@@ -1,7 +1,7 @@
-User.create(email: 'test@example.com', first_name: 'Bob', last_name: 'Bobson', password: 'passy', password_confirmation: 'passy')
-User.create(email: 'test2@example.com', first_name: 'Jim', last_name: 'Turner', password: 'passy', password_confirmation: 'passy')
-User.create(email: 'test3@example.com', first_name: 'Mary', last_name: 'Jackson', password: 'passy', password_confirmation: 'passy')
-User.create(email: 'test4@example.com', first_name: 'Lou', last_name: 'Roberts', password: 'passy', password_confirmation: 'passy')
+User.create(email: 'test@example.com', first_name: 'Bob', last_name: 'Bobson', password: 'password1', password_confirmation: 'password1')
+User.create(email: 'test2@example.com', first_name: 'Jim', last_name: 'Turner', password: 'password2', password_confirmation: 'password2')
+User.create(email: 'test3@example.com', first_name: 'Mary', last_name: 'Jackson', password: 'password3', password_confirmation: 'password3')
+User.create(email: 'test4@example.com', first_name: 'Lou', last_name: 'Roberts', password: 'password4', password_confirmation: 'password4')
 
 Guest.create(user_id: 1, event_id: 1)
 Guest.create(user_id: 2, event_id: 1)
