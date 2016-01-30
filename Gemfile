@@ -23,6 +23,7 @@ gem "paperclip", "~> 4.3"
 gem 'jquery-turbolinks'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'httparty'
 
 group :production do
   gem 'puma'
