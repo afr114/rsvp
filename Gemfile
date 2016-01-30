@@ -18,6 +18,7 @@ gem 'mini_magick',             '3.8.0'
 gem "hirb"
 gem "chartkick"
 gem 'groupdate'
+gem "paperclip", "~> 4.3"
 
 gem 'jquery-turbolinks'
 gem 'geocoder'
