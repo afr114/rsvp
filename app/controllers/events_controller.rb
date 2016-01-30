@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @locations = @event.locations
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.infowindow location.name
       marker.lat location.latitude
       marker.lng location.longitude
     end
