@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = current_user.events.all
   end
 
   def new
@@ -14,6 +14,12 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render :new
+    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    @locations = @event.locations
   end
 
   def edit
