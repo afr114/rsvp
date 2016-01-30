@@ -20,8 +20,15 @@ class EventsController < ApplicationController
   end
 
   def show
+
+    @user = current_user
     @event = Event.find(params[:id])
     @locations = @event.locations
+    @guests = []
+    @event.guests.each do |guest|
+      user = guest.user
+      @guests.push(user)
+    end
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
       marker.infowindow location.name
       marker.lat location.latitude

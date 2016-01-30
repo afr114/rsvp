@@ -1,9 +1,12 @@
 class InviteMailer < ApplicationMailer
-  def daily_report(student, report, teacher)
+  def invite_guest(name, email, event_id)
+    email = email
+    @name = name
+    event_id = event_id.to_i
+    @event = Event.find(event_id)
+    binding.pry
+    mail to: email, subject: "Test"
 
-
-
-    mail to: 
   end
 
 end
