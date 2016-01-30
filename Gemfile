@@ -21,6 +21,7 @@ gem 'groupdate'
 
 gem 'jquery-turbolinks'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 group :production do
   gem 'puma'
