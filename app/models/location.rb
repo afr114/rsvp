@@ -9,8 +9,6 @@ class Location < ActiveRecord::Base
   after_validation :geocode
 
   validates :name, :presence => true
-  validates :start_date, :presence => true
-  validates :end_date, :presence => true
   validates :street, :presence => true
   validates :city, :presence => true
   validates :state, :presence => true
