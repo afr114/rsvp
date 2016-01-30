@@ -1,9 +1,10 @@
 class InviteMailer < ApplicationMailer
-  def invite_guest(email)
+  def invite_guest(name, email)
     email = email
+    @name = name
+    
+    mail to: email, subject: "Test"
 
-
-    mail to: email subject: "Test"
   end
 
 end
