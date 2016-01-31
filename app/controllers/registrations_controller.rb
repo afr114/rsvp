@@ -1,9 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
-
   def create
-gr      if resource.save
+    super do |resource|
+      if resource.save
         if params[:event_id] !=""
-
           @event_id = params[:event_id]
           @event = Event.find(@event_id.to_i)
           @guest = Guest.new
@@ -17,6 +16,6 @@ gr      if resource.save
 
   protected
   def after_sign_up_path_for(resource)
-     "/users/#{resource.id}"
+      "/users/#{resource.id}"
   end
 end
