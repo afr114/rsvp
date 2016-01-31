@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
     super do |resource|
       if resource.save
         if params[:event_id] !=""
-          binding.pry
+
           @event_id = params[:event_id]
           @event = Event.find(@event_id.to_i)
           @guest = Guest.new
@@ -18,6 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
   def after_sign_up_path_for(resource)
-    'resource/:id' # Or :prefix_to_your_route
+     "/users/#{resource.id}"
   end
 end
