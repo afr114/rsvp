@@ -3,7 +3,6 @@ Rails.application.configure do
 
   config.cache_classes = true
   
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
