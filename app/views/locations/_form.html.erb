@@ -22,7 +22,9 @@ function autoComplete() {
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
+  autocomplete.addListener('place_changed', autocomplete.getPlace());
 }
 
 </script>
+
+  <script  src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing,places&callback=autoComplete"></script>
