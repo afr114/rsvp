@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
 
   has_many :guests
   has_many :locations
+  has_many :rooms
   belongs_to :user
 
 
