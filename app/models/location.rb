@@ -22,7 +22,8 @@ class Location < ActiveRecord::Base
 
   def get_id
     query = self.name.split(' ').join('-') + "-" + self.city + '-' + self.state
-    response = HTTParty.get("http://terminal2.expedia.com/x/nlp/results?q=" + query + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+    uri = URI.parse(URI.encode(query.strip))
+    response = HTTParty.get("http://terminal2.expedia.com/x/nlp/results?q=" + uri + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
     self.hotelid = response["result"]["hotels"].first()["id"]
   end
 end
