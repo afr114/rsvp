@@ -31,13 +31,17 @@
 <div class="container">
   <h1>Guest List</h1>
   <% if @guests.any? %>
-  <ul>
-    <% @guests.each do |guest| %>
-    <li> <%= guest.first_name %> </li>
-    <% end %>
-  <% else %>
-  <p>No Guests Yet</p>
-  </ul>
+    <ul>
+      <% @guests.each do |guest| %>
+      <% if guest == @user %>
+        <li> <%= guest.first_name %>  <button type="btn btn-info" name="button" data-toggle="tooltip" title="Add Your Travel Plans">+</button></li>
+      <% else %>
+        <li> <%= guest.first_name %></li>
+      <% end %>
+      <% end %>
+    <% else %>
+    <p>No Guests Yet</p>
+    </ul>
   <% end %>
 
   <div class="guest">
@@ -68,4 +72,10 @@
     handler.fitMapToBounds();
     handler.getMap().setZoom(15);
   });
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>

@@ -20,10 +20,7 @@ class LocationsController < ApplicationController
     @location = Location.create(:name => @name, :street => @street, :city => @city, :state => @state, :event_id => params[:event_id].to_i)
     @event = Event.find(params[:event_id].to_i)
     binding.pry
-
     redirect_to user_event_path(@user, @event)
-
-
   end
 
   def show
