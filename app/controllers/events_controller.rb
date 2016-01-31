@@ -26,8 +26,10 @@ class EventsController < ApplicationController
     @locations = @event.locations
     @guests = []
     @event.guests.each do |guest|
-      user = guest.user
-      @guests.push(user)
+      if guest.user
+        user = guest.user
+        @guests.push(user)
+      end
     end
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
       marker.infowindow location.name
