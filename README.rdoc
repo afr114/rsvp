@@ -1,28 +1,44 @@
-== README
+#RSVPeanuts
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+####Version 1.0, January, 30, 2016
+By Aileen Cacayorin, Shannon Mulloy, Caterina Paun, Abdul Rahimi, Jake Glassman, and Austin Kincaid
 
-Things you may want to cover:
+###Description
+An event manager for those times when many loved-ones all come together off different flights.
 
-* Ruby version
+Here are the users' stories:
+* _[Complete] User signs up with RSVP: The PREMIER event manager._
+* _[Complete] User creates a new event for a gathering._
+* _Event has a main-location boolean designation to differentiate it from the lodging Locations._
+* _._
+* _[Complete] User invites Guests with their emails._
+* _[Complete] Guests are emailed an invite to the Event and can follow a special link that will link their account to the Event._
+* _Guests can enter their lodging location and room number._
+* _If a Guest wants to stay somewhere that other Guests are staying, they can see Expedia provided prices for lodging at the same location._
+* _If Guest adds a new location, it is added to the Event as a new lodging location._
+* _More to come..._
 
-* System dependencies
+[Look for the demo soon!](www.google.com)
 
-* Configuration
+###Setup
+1. Clone the repo
+2. To bundle the gems, type `bundle` into the terminal
+3. To launch Postgres, type `postgres` into the terminal
+4. To create the database, type `rake db:create` into the terminal
+5. To create the tables in the database, type `rake db:migrate` into the terminal
+6. Launch server by typing `rails s` into the terminal and going to `localhost:3000` in your browser
 
-* Database creation
+###Technologies Used
+This app relies on Ruby on Rails, PostgreSQL, Action Mailer (with MailGun), and Bootstrap.
 
-* Database initialization
+###Legal
 
-* How to run the test suite
+Copyright (c) 2015 Shannon Mulloy, Aileen Cacayorin, Caterina Paun, Abdul Rahimi, Jake Glassman, and Austin Kincaid
 
-* Services (job queues, cache servers, search engines, etc.)
+This software is licensed under the MIT license.
 
-* Deployment instructions
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-* ...
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
