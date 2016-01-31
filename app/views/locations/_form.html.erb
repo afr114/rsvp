@@ -2,7 +2,27 @@
 <p>
   LOCATION FORM
 </p>
-<%= form_for [ @event, @location], html: { multipart: true } do |f| %>
-
+<%= form_for [ @event, @location], :id => "search", html: { multipart: true } do |f| %>
+  <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Enter Venue Name", id: "search-text-field" %>
+  <%= f.submit class: "btn btn-success" %>
 
 <% end %>
+<script type="text/javascript">
+
+
+function autoComplete() {
+  var input = document.getElementById('search-text-field');
+
+  var options = {
+          types: ['establishment'],
+          componentRestrictions: {country: 'us'}
+        };
+
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+</script>
