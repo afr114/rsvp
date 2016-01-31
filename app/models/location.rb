@@ -13,9 +13,9 @@ class Location < ActiveRecord::Base
   validates :street, :presence => true
   validates :city, :presence => true
   validates :state, :presence => true
-  validates :zip, :presence => true
+
 
   def full_address
-    "#{street}, #{city}, #{state} #{zip}"
+    "#{street}, #{city}, #{state} "
   end
 end
