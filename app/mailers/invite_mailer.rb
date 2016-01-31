@@ -4,7 +4,6 @@ class InviteMailer < ApplicationMailer
     @name = name
     event_id = event_id.to_i
     @event = Event.find(event_id)
-    binding.pry
     mail to: email, subject: "Test"
 
   end

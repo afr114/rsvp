@@ -11,4 +11,8 @@ class Event < ActiveRecord::Base
 
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+
+  validates :start_date, :presence => true
+  validates :end_date, :presence => true
+
 end

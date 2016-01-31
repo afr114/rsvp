@@ -1,6 +1,6 @@
 <h1>User Events Page</h1>
 
-<h2>My Events</h2>
+<h2>My Events</h2> <%= link_to "Add an event", new_user_event_path(current_user) %>
 
 <% if @events.any? %>
 <ul>
@@ -17,3 +17,11 @@
 <% end %>
 
 <h2>Events I'm going to</h2>
+<% if @attending.any? %>
+  <ul>
+    <% @attending.each do |event| %>
+      <li> <%=link_to event.title, user_event_path(event.user, event) %> </li>
+    <% end %>
+  </ul>
+
+<% end %>

@@ -10,12 +10,13 @@ class EventsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @event.new(event_params)
     if @event.save
       flash[:notice] = "Event successfully created"
       redirect_to @event
     else
-      render :new
+      redirect_to new_event_lo
     end
   end
 
@@ -26,8 +27,10 @@ class EventsController < ApplicationController
     @locations = @event.locations
     @guests = []
     @event.guests.each do |guest|
-      user = guest.user
-      @guests.push(user)
+      if guest.user
+        user = guest.user
+        @guests.push(user)
+      end
     end
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
       marker.infowindow location.name

@@ -1,0 +1,15 @@
+<%= form_for [ @event, @location], html: { multipart: true } do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: '10', autofocus: true, class: "form-control" %>
+  </div>
+
+  <%= f.file_field :image %>
+  <%= f.submit %>
+<% end %>

@@ -26,19 +26,20 @@
   <% end %>
 
   <div class="guest">
-    <h3>Add Guest</h3>
-    <%= form_tag  invite_guest_path do %>
-    <div class="form-group">
-        <%= label_tag 'name', 'Guest Name' %>
-        <%= text_field_tag 'name' %>
-    </div>
-    <div class="form-group">
-        <%= label_tag 'email', ' Guest Email' %>
-        <%= email_field_tag 'email' %>
-    </div>
-    <%=hidden_field_tag :event_id, params[:id] %>
-
-    <%= submit_tag "Invite Guest", class: 'btn btn-default' %>
+    <% if @user == @event.user %>
+      <h3>Add Guest</h3>
+      <%= form_tag  invite_guest_path do %>
+        <div class="form-group">
+            <%= label_tag 'name', 'Guest Name' %>
+            <%= text_field_tag 'name' %>
+        </div>
+        <div class="form-group">
+            <%= label_tag 'email', ' Guest Email' %>
+            <%= email_field_tag 'email' %>
+        </div>
+        <%=hidden_field_tag :event_id, params[:id] %>
+        <%= submit_tag "Invite Guest", class: 'btn btn-default' %>
+        <% end %>
     <% end %>
     </div>
 
@@ -50,5 +51,6 @@
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
+    handler.getMap().setZoom(15);
   });
 </script>
