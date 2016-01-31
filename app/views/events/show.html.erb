@@ -36,17 +36,22 @@
             <% end %>
           </div>
           <div class="col-xs-6">
-            <% if !@guest.rooms.where(event_id: @event.id).any? %>
-              <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+            <!-- look here shannon! -->
+            <% if @guest %>
+              <% if !@guest.rooms.where(event_id: @event.id).any? %>
+                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+              <% end %>
             <% end %>
           </div>
         </li>
+
 
         <% end %>
       </ul>
     <% else %>
       <h3>You have no locations for this event</h3>
     <% end %>
+    <button type="button" class="btn btn-primary" id="apiButton">Find Hotels</button>
   </div>
   <div class="col-md-4">
     <h1 class="white">Guest List</h1>
@@ -55,7 +60,15 @@
         <div class="panel-heading"><h3>Guests</h3></div>
       <ul class="list-group">
         <% @guests.each do |guest| %>
-        <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% if guest == @user %>
+            <li class="list-group-item">
+              <%= guest.first_name %>
+              <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
+            </li>
+
+          <% else %>
+            <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% end %>
         <% end %>
     </div>
       <% else %>
@@ -85,12 +98,30 @@
   </div>
 </div>
 
+
+
 <script>
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(15);
+    handler.getMap();
   });
+
+  $('#apiButton').click(function(){
+    var loc = window.Locations = <%= (@locations.first.to_json.html_safe) %>;
+    var start = window.Event = <%= (@start.to_json.html_safe) %>;
+    var end = window.Event = <%= (@end.to_json.html_safe) %>;
+    var address = loc["street"];
+    var zip = loc["zip"];
+    var url = "https://www.expedia.com/Hotel-Search?#destination=" + address + zip + "&startDate=" + start + "&endDate=" + end;
+    window.open(url, "_blank");
+  });
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>

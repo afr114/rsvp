@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :guests
   end
 
+  resources :locations do
+    resources :rooms
+  end
+
   match '/invite_guest', to: 'emails#send_mail', via: 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
