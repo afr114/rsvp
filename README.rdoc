@@ -7,16 +7,16 @@ By Aileen Cacayorin, Shannon Mulloy, Caterina Paun, Abdul Rahimi, Jake Glassman,
 An event manager for those times when many loved-ones all come together off different flights.
 
 Here are the users' stories:
-* _[Complete] User signs up with RSVP: The PREMIER event manager._
-* _[Complete] User creates a new event for a gathering._
-* _Event has a main-location boolean designation to differentiate it from the lodging Locations._
-* _._
-* _[Complete] User invites Guests with their emails._
-* _[Complete] Guests are emailed an invite to the Event and can follow a special link that will link their account to the Event._
-* _Guests can enter their lodging location and room number._
-* _If a Guest wants to stay somewhere that other Guests are staying, they can see Expedia provided prices for lodging at the same location._
-* _If Guest adds a new location, it is added to the Event as a new lodging location._
-* _More to come..._
+* [Complete] User signs up with RSVP: The PREMIER event manager.
+* [Complete] User creates a new event for a gathering.
+* Event has a main-location boolean designation to differentiate it from the lodging Locations.
+* .
+* [Complete] User invites Guests with their emails.
+* [Complete] Guests are emailed an invite to the Event and can follow a special link that will link their account to the Event.
+* Guests can enter their lodging location and room number.
+* If a Guest wants to stay somewhere that other Guests are staying, they can see Expedia provided prices for lodging at the same location.
+* If Guest adds a new location, it is added to the Event as a new lodging location.
+* More to come...
 
 [Look for the demo soon!](www.google.com)
 
