@@ -5,7 +5,17 @@
     <ul class="list-group">
       <li class="list-group-item"id="map"></li>
       <% @locations.each do |location| %>
-        <li class="list-group-item"><%= location.name %></li>
+        <li class="list-group-item">
+        <h4><%= location.name %></h4>
+          <% if location.guests.any? %>
+          <h6>Staying Here:<h6>
+            <% location.guests.each do |guest| %>
+            <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, <%= guest.rooms.where(location_id: location.id).first().start_date.strftime("%a, %b %e") %> to <%= guest.rooms.where(location_id: location.id).first().end_date.strftime("%a, %b %e") %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
+            <% end %>
+          <h6>
+          <% end %>
+        </li>
+
       <% end %>
     </ul>
   <% else %>
