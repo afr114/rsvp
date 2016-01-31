@@ -1,26 +1,26 @@
 <%= form_for [@user, @event], html: { multipart: true } do |f| %>
 
   <div class="field form-group">
-    <%= f.label :title %>
+    <%= f.label :title, class: "white" %>
     <%= f.text_field :title, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :description %>
+    <%= f.label :description, class: "white" %>
     <%= f.text_area :description, rows: '10', autofocus: true, class: "form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :start_date %>
+    <%= f.label :start_date, class: "white" %>
     <%= f.date_select :start_date, class: "form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :end_date %>
+    <%= f.label :end_date, class: "white" %>
     <%= date_select :end_date, class: "form-control" %>
 
 
 
-  <%= f.file_field :image %><br>
+  <%= f.file_field :image, class: "white" %><br>
   <%= f.submit class: "btn btn-success" %>
 <% end %>

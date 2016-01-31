@@ -12,6 +12,7 @@
     <% else %>
     <p>
       No events yet.
+      <span class="add-event"><%= link_to "Add an event", new_user_event_path(current_user), class: "btn btn-primary" %></span>
     </p>
     <% end %>
   </div>

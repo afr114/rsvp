@@ -41,10 +41,15 @@ body {
   margin-bottom: 0px;
   border: 0px;
   background-color: #d9d9d9;
+  border-radius: 0px;
 }
 
 #about {
   background-color: #e68a00;
+}
+
+.about-well {
+  margin-top: 50px;
 }
 
 #sign-up a:hover {
