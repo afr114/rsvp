@@ -32,6 +32,7 @@
     <% else %>
       <h3>You have no locations for this event</h3>
     <% end %>
+    <button type="button" class="btn btn-primary" id="apiButton">Find Hotels</button>
   </div>
   <div class="col-md-4">
     <h1 class="white">Guest List</h1>
@@ -87,6 +88,16 @@
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     handler.getMap().setZoom(15);
+  });
+
+  $('#apiButton').click(function(){
+    var loc = window.Locations = <%= (@locations.first.to_json.html_safe) %>;
+    var start = window.Event = <%= (@start.to_json.html_safe) %>;
+    var end = window.Event = <%= (@end.to_json.html_safe) %>;
+    var address = loc["street"];
+    var zip = loc["zip"];
+    var url = "https://www.expedia.com/Hotel-Search?#destination=" + address + zip + "&startDate=" + start + "&endDate=" + end;
+    window.open(url, "_blank");
   });
 </script>
 
