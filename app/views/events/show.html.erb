@@ -63,7 +63,7 @@
         <div class="panel-heading"><h3>Guests</h3></div>
       <ul class="list-group">
         <% @guests.each do |guest| %>
-          <% if guest == @user %>
+          <% if guest == @user && !@guest.rooms.where(event_id: @event.id).any? %>
             <li class="list-group-item">
               <%= guest.first_name %>
               <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
