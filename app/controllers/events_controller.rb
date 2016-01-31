@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
 
   def show
-
+    require 'httparty'
     @user = current_user
     @event = Event.find(params[:id])
     @start = @event.start_date.to_date.strftime("%m/%d/%Y")
@@ -34,6 +34,18 @@ class EventsController < ApplicationController
       if guest.user
         user = guest.user
         @guests.push(user)
+      end
+    end
+    @guest = current_user.guests.where(event_id: @event.id).first()
+    @prices = {}
+    if !@guest.rooms.where(event_id: @event.id).any?
+      @locations.each do |location|
+        response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+        if response["HotelInfoList"]
+          @prices[location.name] = "$" + response["HotelInfoList"]["HotelInfo"]["Price"]["TotalRate"]["Value"]
+        else
+          @prices[location.name] = "Unavailable"
+        end
       end
     end
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
