@@ -39,7 +39,10 @@
             <!-- look here shannon! -->
             <% if @guest %>
               <% if !@guest.rooms.where(event_id: @event.id).any? %>
-                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name]['price'] %><h6>
+                <% if @prices[location.name]['query'] %>
+                  <a href=<%= @prices[location.name]['query'] %> target="_blank"><button type="button" class="btn btn-primary">Book now</button></a>
+                <% end %>
               <% end %>
             <% end %>
           </div>
