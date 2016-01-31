@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
   root 'home#index'
+  get 'about', to: 'home#about', as: 'about'
 
   resources :users do
     resources :events
