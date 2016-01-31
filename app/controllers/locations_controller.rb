@@ -12,13 +12,15 @@ class LocationsController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = current_user
     @event = Event.find(params[:event_id].to_i)
-    @name = location_params[:name]
     @address = params[:search].split(",")
-    @street = @address[0]
-    @city = @address[1]
-    @state = @address[2]
+    binding.pry
+    @name = @address[0]
+    @street = @address[1]
+    @city = @address[2]
+    @state = @address[3]
     @location = Location.create(:name => @name, :street => @street, :city => @city, :state => @state, :event_id => params[:event_id].to_i)
 
 
@@ -52,6 +54,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:name, :search, :name, :street, :state, :city)
+    params.require(:location).permit(:search, :name, :street, :state, :city)
   end
 end
