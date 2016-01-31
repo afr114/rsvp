@@ -5,4 +5,4 @@
 <p> <%= @event.user.first_name %> has invited you to <%= @event.title %>! Check out the event details at RSVP. See the guest list and plan your travels around your friends plans.
 
 </p>
-<p><%= link_to "Sign up for RSVP", new_user_registration_url(:event => @event.id)  %> and start planning!</p>
+<p><%= link_to "Sign up for RSVP", new_user_registration_url(:event => @event.id, host: "rsvp-list.herokuapp.com")  %> and start planning!</p>
