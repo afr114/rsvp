@@ -1,3 +1,9 @@
-<h1>Enter your event location</h1>
+<% if @user == @event.user %>
+  <h1>Where is the event happening?</h1>
+<% else %>
+<h1>Where are you staying?</h1>
+<% end %>
+
+
 
 <%= render 'form' %>

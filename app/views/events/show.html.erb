@@ -17,11 +17,15 @@
             <% end %>
           </div>
           <div class="col-xs-6">
-            <% if !@guest.rooms.where(event_id: @event.id).any? %>
-              <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+            <!-- look here shannon! -->
+            <% if @guest %>
+              <% if !@guest.rooms.where(event_id: @event.id).any? %>
+                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+              <% end %>
             <% end %>
           </div>
         </li>
+
 
         <% end %>
       </ul>
@@ -37,7 +41,15 @@
         <div class="panel-heading"><h3>Guests</h3></div>
       <ul class="list-group">
         <% @guests.each do |guest| %>
-        <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% if guest == @user %>
+            <li class="list-group-item">
+              <%= guest.first_name %>
+              <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
+            </li>
+
+          <% else %>
+            <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% end %>
         <% end %>
     </div>
       <% else %>
@@ -67,6 +79,8 @@
   </div>
 </div>
 
+
+
 <script>
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
@@ -85,4 +99,10 @@
     var url = "https://www.expedia.com/Hotel-Search?#destination=" + address + zip + "&startDate=" + start + "&endDate=" + end;
     window.open(url, "_blank");
   });
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>

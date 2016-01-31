@@ -4,4 +4,5 @@ class Guest < ActiveRecord::Base
 
   has_many :rooms
   has_many :locations, through: :rooms
+  
 end
