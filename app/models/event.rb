@@ -16,4 +16,9 @@ class Event < ActiveRecord::Base
   validates :start_date, :presence => true
   validates :end_date, :presence => true
 
+  def find_guest(user)
+    event_id = self.id
+    return Guest.where(user_id: user.id, event_id: event_id)
+  end
+
 end

@@ -19,6 +19,8 @@ gem "hirb"
 gem "chartkick"
 gem 'groupdate'
 gem "paperclip", "~> 4.3"
+gem 'mailgunner'
+gem 'rest-client'
 
 gem 'jquery-turbolinks'
 gem 'geocoder'

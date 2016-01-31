@@ -1,7 +1,26 @@
+<div class="row">
+  <h1 class="white text-center"><%= @event.title %></h1>
+  <br>
+  <div class="col-md-6">
+    <div class="well event-description">
+      <span class="description-header">Event Description</span>
+      <p><%= @event.description %></p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="well">
+      <ul class="event-details">
+        <li><strong>Starts</strong>: <%= @event.start_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
+        <li><strong>Ends</strong>: <%= @event.end_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
+        <li><strong>Located At</strong>: <%= @event.locations.first.name %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-md-8">
-    <h1 class="white"><%= @event.title %></h1>
+    <h1 class="white">Guest locations</h1>
     <% if @locations.any? %>
       <ul class="list-group">
         <li class="list-group-item"id="map"></li>
@@ -17,11 +36,18 @@
             <% end %>
           </div>
           <div class="col-xs-6">
-            <% if !@guest.rooms.where(event_id: @event.id).any? %>
-              <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+            <!-- look here shannon! -->
+            <% if @guest %>
+              <% if !@guest.rooms.where(event_id: @event.id).any? %>
+                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name]['price'] %><h6>
+                <% if @prices[location.name]['query'] %>
+                  <a href=<%= @prices[location.name]['query'] %> target="_blank"><button type="button" class="btn btn-primary">Book now</button></a>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </li>
+
 
         <% end %>
       </ul>
@@ -37,7 +63,15 @@
         <div class="panel-heading"><h3>Guests</h3></div>
       <ul class="list-group">
         <% @guests.each do |guest| %>
-        <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% if guest == @user && !@guest.rooms.where(event_id: @event.id).any? %>
+            <li class="list-group-item">
+              <%= guest.first_name %>
+              <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
+            </li>
+
+          <% else %>
+            <li class="list-group-item"> <%= guest.first_name %> </li>
+          <% end %>
         <% end %>
     </div>
       <% else %>
@@ -67,13 +101,15 @@
   </div>
 </div>
 
+
+
 <script>
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(15);
+    handler.getMap();
   });
 
   $('#apiButton').click(function(){
@@ -85,4 +121,10 @@
     var url = "https://www.expedia.com/Hotel-Search?#destination=" + address + zip + "&startDate=" + start + "&endDate=" + end;
     window.open(url, "_blank");
   });
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>

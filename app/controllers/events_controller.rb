@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def create
     @user = current_user
     @event = Event.create(event_params)
+    binding.pry
     if @event.save
       @event.user = @user
       @event.save
@@ -37,14 +38,23 @@ class EventsController < ApplicationController
       end
     end
     @guest = current_user.guests.where(event_id: @event.id).first()
-    @prices = {}
-    if !@guest.rooms.where(event_id: @event.id).any?
-      @locations.each do |location|
-        response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
-        if response["HotelInfoList"]
-          @prices[location.name] = "$" + response["HotelInfoList"]["HotelInfo"]["Price"]["TotalRate"]["Value"]
-        else
-          @prices[location.name] = "Unavailable"
+    #//look over here shannon!
+    if @guest
+      @prices = {}
+      if !@guest.rooms.where(event_id: @event.id).any?
+        @locations.each do |location|
+          @prices[location.name] = {}
+          response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+          if response["HotelInfoList"]
+            @prices[location.name]['price'] = "$" + response["HotelInfoList"]["HotelInfo"]["Price"]["TotalRate"]["Value"]
+          else
+            @prices[location.name]['price'] = "Unavailable"
+          end
+          if @prices[location.name]['price'] != "Unavailable"
+            @prices[location.name]['query'] = 'https://www.expedia.com/' + location.city + '-Hotels-' + location.name.split(' ').join('-') + '.h' + location.hotelid + '.Hotel-Information?chkin=' + @event.start_date.strftime("%m").to_s + '%2F' + @event.start_date.strftime("%d").to_s + '%2F' + @event.start_date.strftime("%Y").to_s + '&chkout=' + @event.end_date.strftime("%m").to_s + '%2F' + @event.end_date.strftime("%d").to_s + '%2F' + @event.end_date.strftime("%Y").to_s
+          else
+            @prices[location.name]['query'] = nil
+          end
         end
       end
     end
