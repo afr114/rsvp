@@ -64,7 +64,7 @@ body {
 .landing-buttons {
   font-family: heckyeah;
   color: white;
-  position: relative;
+  position: absolute;
   left: 27%;
   top: 40%;
   display: inline-block;
@@ -103,7 +103,7 @@ html, body {
   height: 400px;
 }
 
-.landing-background {
+.landing-page {
   background:
     linear-gradient(
     rgba(0, 0, 0, 0.25),
@@ -127,7 +127,6 @@ html, body {
 }
 
 .panel a:hover {
-  font-size: 1.5em;
   color: #4d4d4d;
   text-decoration: none;
   -o-transition:.5s;
