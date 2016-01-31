@@ -12,9 +12,14 @@
 
   <div class="field form-group">
     <%= f.label :date %>
-    <%= f.select_date :start_date, class: "form-control" %>
+    <%= f.date_select :start_date, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :date %>
+    <%= date_select :end_date, class: "form-control" %>
   </div>
 
   <%= f.file_field :image %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-success" %>
 <% end %>
