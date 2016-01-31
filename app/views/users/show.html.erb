@@ -17,3 +17,11 @@
 <% end %>
 
 <h2>Events I'm going to</h2>
+<% if @attending.any? %>
+  <ul>
+    <% @attending.each do |event| %>
+      <li> <%=link_to event.title, user_event_path(event.user, event) %> </li>
+    <% end %>
+  </ul>
+
+<% end %>
