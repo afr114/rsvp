@@ -1,27 +1,31 @@
-<h1>User Events Page</h1>
-
-<h2>My Events</h2> <%= link_to "Add an event", new_user_event_path(current_user) %>
-
-<% if @events.any? %>
-<ul>
-  <% @events.each do |event| %>
-      <li> <%=link_to event.title, user_event_path(current_user, event) %> </li>
+<div class="row events">
+  <div class='col-md-6'>
+    <% if @events.any? %>
+    <div class="panel panel-success">
+      <div class="panel-heading">My Events <span class="pull-right add-event"><%= link_to "Add an event", new_user_event_path(current_user), class: "btn btn-primary" %></span></div>
+      <ul class="list-group">
+      <% @events.each do |event| %>
+          <li class="list-group-item"><%=link_to event.title, user_event_path(current_user, event) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% else %>
+    <p>
+      No events yet.
+      <span class="add-event"><%= link_to "Add an event", new_user_event_path(current_user), class: "btn btn-primary" %></span>
+    </p>
     <% end %>
-</ul>
+  </div>
 
-<% else %>
-<p>
-  No events yet.
-</p>
-
-<% end %>
-
-<h2>Events I'm going to</h2>
-<% if @attending.any? %>
-  <ul>
-    <% @attending.each do |event| %>
-      <li> <%=link_to event.title, user_event_path(event.user, event) %> </li>
+  <div class="col-md-6">
+    <% if @attending.any? %>
+    <div class="panel panel-success">
+      <div class="panel-heading">Events I'm going to</div>
+        <ul class="list-group">
+          <% @attending.each do |event| %>
+            <li class="list-group-item"><%=link_to event.title, user_event_path(event.user, event) %></li>
+          <% end %>
+        </ul>
     <% end %>
-  </ul>
-
-<% end %>
+  </div>
+</div>
