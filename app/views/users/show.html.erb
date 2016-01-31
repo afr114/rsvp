@@ -1,6 +1,6 @@
 <h1>User Events Page</h1>
 
-<h2>My Events</h2>
+<h2>My Events</h2> <%= link_to "Add an event", new_user_event_path(current_user) %>
 
 <% if @events.any? %>
 <ul>

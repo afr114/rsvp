@@ -1,4 +1,4 @@
-<%= form_for [@user, @event], html: { multipart: true } do |f| %>
+<%= form_for [ @event, @location], html: { multipart: true } do |f| %>
 
   <div class="field form-group">
     <%= f.label :title %>
@@ -8,11 +8,6 @@
   <div class="field form-group">
     <%= f.label :description %>
     <%= f.text_area :description, rows: '10', autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :date %>
-    <%= f.select_date :start_date, class: "form-control" %>
   </div>
 
   <%= f.file_field :image %>

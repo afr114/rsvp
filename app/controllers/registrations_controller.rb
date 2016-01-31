@@ -1,8 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    super do |resource|
-      if resource.save
+gr      if resource.save
         if params[:event_id] !=""
 
           @event_id = params[:event_id]
