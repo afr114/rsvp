@@ -1,7 +1,7 @@
-#RSVPeanuts
+#RSVP
 
 ####Version 1.0, January, 30, 2016
-By Aileen Cacayorin, Shannon Mulloy, Caterina Paun, Abdul Rahimi, Jake Glassman, and Austin Kincaid
+By Aileen Cacayorin, Shannon Mulloy, Abdul Rahimi, Jake Glassman, and Austin Kincaid
 
 ###Description
 An event manager for those times when many loved-ones all come together off different flights.
@@ -9,16 +9,14 @@ An event manager for those times when many loved-ones all come together off diff
 Here are the users' stories:
 * [Complete] User signs up with RSVP: The PREMIER event manager.
 * [Complete] User creates a new event for a gathering.
-* Event has a main-location boolean designation to differentiate it from the lodging Locations.
-* .
 * [Complete] User invites Guests with their emails.
 * [Complete] Guests are emailed an invite to the Event and can follow a special link that will link their account to the Event.
-* Guests can enter their lodging location and room number.
-* If a Guest wants to stay somewhere that other Guests are staying, they can see Expedia provided prices for lodging at the same location.
-* If Guest adds a new location, it is added to the Event as a new lodging location.
-* More to come...
+* [Complete] Guests can enter their lodging location and room number.
+* [Complete] If a Guest wants to stay somewhere that other Guests are staying, they can see Expedia provided prices for lodging at the same location.
+* [Complete] If Guest adds a new location, it is added to the Event as a new lodging location.
+* [Complete] If a guest wants to search for a
 
-[Look for the demo soon!](www.google.com)
+The live demo was built over two days time. Peep the [live demo](http://rsvp-list.herokuapp.com/)
 
 ###Setup
 1. Clone the repo
@@ -29,11 +27,11 @@ Here are the users' stories:
 6. Launch server by typing `rails s` into the terminal and going to `localhost:3000` in your browser
 
 ###Technologies Used
-This app relies on Ruby on Rails, PostgreSQL, Action Mailer (with MailGun), and Bootstrap.
+This app relies on Ruby on Rails, PostgreSQL, Action Mailer (with MailGun), Bootstrap, and the Hotel APIs provided by Expedia.
 
 ###Legal
 
-Copyright (c) 2015 Shannon Mulloy, Aileen Cacayorin, Caterina Paun, Abdul Rahimi, Jake Glassman, and Austin Kincaid
+Copyright (c) 2015 Shannon Mulloy, Aileen Cacayorin, Abdul Rahimi, Jake Glassman, and Austin Kincaid
 
 This software is licensed under the MIT license.
 
