@@ -25,7 +25,6 @@
   background-position: center center;
   height: 900px;
   background-attachment: fixed;
-  color: gray;
 }
 
 .navbar-brand {
@@ -120,7 +119,7 @@ html, body {
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
-  height: 900px;
+  height: 750px;
 }
 
 .panel-heading {
@@ -164,6 +163,12 @@ html, body {
 .add-event {
   font-size: .5em;
   margin-top: 10px;
+}
+
+nav.navbar.navbar-default {
+  height:60px;
+  padding-top: 5px;
+  background-color: white;
 }
 
 #add-button {
