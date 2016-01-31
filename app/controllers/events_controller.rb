@@ -26,6 +26,8 @@ class EventsController < ApplicationController
 
     @user = current_user
     @event = Event.find(params[:id])
+    @start = @event.start_date.to_date.strftime("%m/%d/%Y")
+    @end = @event.end_date.to_date.strftime("%m/%d/%Y")
     @locations = @event.locations
     @guests = []
     @event.guests.each do |guest|
