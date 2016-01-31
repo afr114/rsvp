@@ -11,15 +11,16 @@
   </div>
 
   <div class="field form-group">
-    <%= f.label :date %>
-    <%= date_select :event, :start_date%>
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date, class: "form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :date %>
-    <%= date_select :event, :end_date  %>
-  </div>
+    <%= f.label :end_date %>
+    <%= date_select :end_date, class: "form-control" %>
 
-  <%= f.file_field :image %>
+
+
+  <%= f.file_field :image %><br>
   <%= f.submit class: "btn btn-success" %>
 <% end %>
