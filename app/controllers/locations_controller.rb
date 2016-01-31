@@ -27,11 +27,8 @@ class LocationsController < ApplicationController
     else
       @start_date = @event.start_date
       @end_date = @event.end_date
-      @guest = @event.find_guest(@user)
-      # this is the line that doesn't work because it can't extract the guest id
-      # @room = Room.create(:start_date => @start_date, :end_date => @end_date, :location_id => @location.id, :event_id => @event.id, :guest_id => @guest.id)
-      @room = Room.create(:start_date => @start_date, :end_date => @end_date, :location_id => @location.id, :event_id => @event.id)
-
+      @guest = @event.find_guest(@user).first.id
+      @room = Room.create(:start_date => @start_date, :end_date => @end_date, :location_id => @location.id, :event_id => @event.id, :guest_id => @guest)
       @room.save
       redirect_to user_event_path(@user, @event)
     end
