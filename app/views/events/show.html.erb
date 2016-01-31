@@ -6,15 +6,22 @@
       <ul class="list-group">
         <li class="list-group-item"id="map"></li>
         <% @locations.each do |location| %>
-          <li class="list-group-item">
+          <li class="list-group-item clearfix">
           <h4><%= location.name %></h4>
+          <div class="col-xs-6">
             <% if location.guests.any? %>
             <h6>Staying Here:</h6>
               <% location.guests.each do |guest| %>
-              <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, <%= guest.rooms.where(location_id: location.id).first().start_date.strftime("%a, %b %e") %> to <%= guest.rooms.where(location_id: location.id).first().end_date.strftime("%a, %b %e") %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
+              <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
               <% end %>
             <% end %>
-          </li>
+          </div>
+          <div class="col-xs-6">
+            <% if !@guest.rooms.where(event_id: @event.id).any? %>
+              <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+            <% end %>
+          </div>
+        </li>
 
 
         <% end %>
