@@ -1,6 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-<<<<<<< HEAD
-
  def create
    super do |resource|
      if resource.save
