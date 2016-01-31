@@ -1,7 +1,26 @@
+<div class="row">
+  <h1 class="white text-center"><%= @event.title %></h1>
+  <br>
+  <div class="col-md-6">
+    <div class="well event-description">
+      <span class="description-header">Event Description</span>
+      <p><%= @event.description %></p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="well">
+      <ul class="event-details">
+        <li><strong>Starts</strong>: <%= @event.start_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
+        <li><strong>Ends</strong>: <%= @event.end_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
+        <li><strong>Located At</strong>: <%= @event.locations.first.name %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-md-8">
-    <h1 class="white"><%= @event.title %></h1>
+    <h1 class="white">Guest locations</h1>
     <% if @locations.any? %>
       <ul class="list-group">
         <li class="list-group-item"id="map"></li>
