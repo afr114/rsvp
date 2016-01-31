@@ -1,9 +1,13 @@
 
-<p>
-  LOCATION FORM
-</p>
+
 <%= form_for [ @event, @location], :id => "search", html: { multipart: true } do |f| %>
-  <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Enter Venue Name", id: "search-text-field" %>
+  <div class="field form-group">
+    <%= f.label :name, "Venue Name" %>
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Enter Venue Address", id: "search-text-field" %>
+  </div>
   <%= f.submit class: "btn btn-success" %>
 
 <% end %>
@@ -14,7 +18,7 @@ function autoComplete() {
   var input = document.getElementById('search-text-field');
 
   var options = {
-          types: ['establishment'],
+          types: ['address'],
           componentRestrictions: {country: 'us'}
         };
 
