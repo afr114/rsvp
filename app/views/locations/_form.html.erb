@@ -1,5 +1,3 @@
-
-
 <%= form_for [ @event, @location], :id => "search", html: { multipart: true } do |f| %>
   <div class="field form-group">
     <%= f.label :name, "Venue Name" %>
@@ -11,11 +9,13 @@
   <%= f.submit class: "btn btn-success" %>
 
 <% end %>
+
+
 <script type="text/javascript">
 function autoComplete() {
   var input = document.getElementById('search-text-field');
   var options = {
-          types: ['establishment', 'address'],
+          types: ['address'],
           componentRestrictions: {country: 'us'}
         };
   var autocomplete = new google.maps.places.Autocomplete(input, options);
