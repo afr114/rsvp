@@ -17,8 +17,11 @@
             <% end %>
           </div>
           <div class="col-xs-6">
-            <% if !@guest.rooms.where(event_id: @event.id).any? %>
-              <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+            <!-- look here shannon! -->
+            <% if @guest %>
+              <% if !@guest.rooms.where(event_id: @event.id).any? %>
+                <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+              <% end %>
             <% end %>
           </div>
         </li>
