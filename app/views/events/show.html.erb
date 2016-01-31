@@ -14,7 +14,11 @@
               <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, <%= guest.rooms.where(location_id: location.id).first().start_date.strftime("%a, %b %e") %> to <%= guest.rooms.where(location_id: location.id).first().end_date.strftime("%a, %b %e") %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
               <% end %>
             <% end %>
-          </li>
+          </div>
+          <div class="col-xs-6">
+            <h6>Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <%= @prices[location.name] %><h6>
+          </div>
+        </li>
 
         <% end %>
       </ul>
