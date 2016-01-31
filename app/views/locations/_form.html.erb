@@ -2,11 +2,11 @@
 
 <%= form_for [ @event, @location], :id => "search", html: { multipart: true } do |f| %>
   <div class="field form-group">
-    <%= f.label :name, "Venue Name" %>
+    <%= f.label :name, "Location Name" %>
     <%= f.text_field :name, autofocus: true, class: "form-control" %>
   </div>
   <div class="field form-group">
-    <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Enter Venue Address", id: "search-text-field" %>
+    <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Enter Address", id: "search-text-field" %>
   </div>
   <%= f.submit class: "btn btn-success" %>
 
