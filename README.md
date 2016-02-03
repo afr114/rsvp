@@ -4,7 +4,7 @@
 By Aileen Cacayorin, Shannon Mulloy, Abdul Rahimi, Jake Glassman, and Austin Kincaid
 
 ###Description
-An event manager for those times when many loved-ones all come together off different flights.
+An event manager for those times when many loved-ones all come together off different flights. Finalist at Expedia Seattle Hackathon 2016.
 
 Here are the users' stories:
 * [Complete] User signs up with RSVP: The PREMIER event manager.
