@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'events';
+@import "nav";
 
 @font-face {
     font-family: gravity;
@@ -17,35 +18,11 @@
     src: url(/assets/black.ttf) format("truetype");
 }
 
-.main-backdrop {
-  font-family: gravity;
-  background-image: url('swing.jpeg');
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  height: 900px;
-  background-attachment: fixed;
-}
-
-.navbar-brand {
-  font-family: stackyard;
-  font-size: 4em;
-}
 
 .white {
   color: white;
 }
 
-.navbar {
-  margin-bottom: 0px;
-  border: 0px;
-  background-color: #d9d9d9;
-  border-radius: 0px;
-}
-
-#about {
-  background-color: #e68a00;
-}
 
 .about-well {
   margin-top: 50px;
@@ -163,12 +140,6 @@ html, body {
 .add-event {
   font-size: .5em;
   margin-top: 10px;
-}
-
-nav.navbar.navbar-default {
-  height:60px;
-  padding-top: 5px;
-  background-color: white;
 }
 
 #add-button {
