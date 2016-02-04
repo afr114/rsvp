@@ -31,10 +31,6 @@
   font-size: 4em;
 }
 
-.white {
-  color: white;
-}
-
 .navbar {
   margin-bottom: 0px;
   border: 0px;
@@ -105,7 +101,7 @@ html, body {
   padding: 0;
 }
 #map {
-  height: 400px;
+  height: 570px;
 }
 
 .landing-page {
@@ -157,6 +153,15 @@ html, body {
   font-size: 1.5em;
   line-height: 180%;
   list-style: none;
+}
+
+.table-location-name {
+  margin-top: 30px;
+  font-size: 150%;
+}
+
+.locations-right-table {
+  margin-top: 30px;
 }
 
 .add-event {
