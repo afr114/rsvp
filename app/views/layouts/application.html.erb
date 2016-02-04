@@ -12,12 +12,10 @@
 <div>
   <%= render "layouts/navbar" %>
   <body>
-    <div class="main-backdrop">
       <div class="container">
         <%= flash[:notice] %>
         <%= flash[:error] %>
         <%= yield %>
       </div>
-  </div>
   </body>
 </html>
