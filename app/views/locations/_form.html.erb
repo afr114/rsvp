@@ -1,4 +1,4 @@
-<%= form_for [ @event, @location], :id => "search", html: { multipart: true } do |f| %>
+<%= form_for [@event, @location], :id => "search", html: { multipart: true } do |f| %>
   <div class="field form-group">
     <%= f.label :name, "Venue Name" %>
     <%= f.text_field :name, autofocus: true, class: "form-control" %>

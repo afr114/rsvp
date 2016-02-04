@@ -17,7 +17,7 @@ class Location < ActiveRecord::Base
 
 
   def full_address
-    "#{street}, #{city}, #{state} "
+    "#{street}, #{city}, #{state}"
   end
 
   def get_id

@@ -12,7 +12,6 @@ class EventsController < ApplicationController
   def create
     @user = current_user
     @event = Event.create(event_params)
-    binding.pry
     if @event.save
       @event.user = @user
       @event.save
