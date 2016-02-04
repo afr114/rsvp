@@ -11,22 +11,24 @@
 
 .landing-tabs {
   list-style:none;
+  padding-right: 3.5em;
 }
 
 .landing-tabs li {
   margin-right: 5px;
+  text-decoration: none;
 }
 
 .logo {
   font-family: stackyard;
   font-size:4em;
   align-self:center;
-  margin-left:50px;
   color: #021B28;
 }
 
 .logo:hover, :focus, :active, :visited {
   text-decoration:none;
+  color: #021C28;
 }
 
 .landing-tabs a {
@@ -39,20 +41,39 @@
   color: #021B28;
 }
 
-.landing-tabs a:hover {
-  color: #0b0b0b;
-  border-bottom-color: #52;
+.landing-tabs a:hover, :focus{
+  text-decoration: none;
+  background-color:#358f81;
+  border-radius: 5px;
+  color: white;
+}
+
+a.logo:focus {
+  line-height:0;
+  outline-width:0;
+  outline-color:transparent;
+  text-decoration:none;
+  color: #021C28;
 }
 
 button.btn.btn-custom a {
   padding: 0;
-  color: white;
   border: none;
+  color:white;
 }
 
 button.btn.btn-custom {
   background-color:#037362;
 }
+
+button.btn.btn-custom:hover {
+  background-color:#358f81;
+}
+
+button.btn.btn-custom:hover {
+    background-color:#358f81;
+}
+
 
 @media (min-width: 769px) {
   .nav-bar{
@@ -67,9 +88,14 @@ button.btn.btn-custom {
   .landing-tabs{
     flex-direction: row;
     margin-top: 15px;
-    margin-right: 20px;
   }
+
   .landing-tabs a {
     border-bottom-color:transparent;
   }
+
+  .logo {
+    margin-left: 30px;
+  }
+
 }
