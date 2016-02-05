@@ -155,6 +155,16 @@ html, body {
   list-style: none;
 }
 
+.location-list {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.guest-list {
+  max-height: 400px;
+  overflow-y:scroll;
+}
+
 .table-location-name {
   margin-top: 30px;
   font-size: 150%;

@@ -12,7 +12,11 @@
       <ul class="event-details">
         <li><strong>Starts</strong>: <%= @event.start_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
         <li><strong>Ends</strong>: <%= @event.end_date.strftime("%m/%d/%Y at %I:%M%p") %></li>
-        <li><strong>Located At</strong>: <%= @event.locations.first.name %></li>
+        <% if @event.locations.any? %>
+          <li><strong>Located At</strong>: <%= @event.locations.first.name %></li>
+        <% else %>
+          <li>No location set</li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -21,21 +25,25 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Guest locations</h1>
+    <% if @event.locations.any? %>
       <ul class="list-group">
         <li class="list-group-item"id="map"></li>
       </ul>
+    <% else %>
+      No locations listed yet!
+    <% end %>
   </div>
 
   <div class="col-md-4">
     <h1 class="white">Guest List</h1>
     <% if @guests.any? %>
     <div class="panel panel-success">
-        <div class="panel-heading"><h3>Guests</h3></div>
-      <ul class="list-group">
+      <div class="panel-heading"><h3>Guests</h3></div>
+      <ul class="list-group guest-list">
         <% @guests.each do |guest| %>
-          <% if guest == @user && !@guest.rooms.where(event_id: @event.id).any? %>
+          <% if guest == @user && current_user %>
             <li class="list-group-item">
-              <%= guest.first_name %>
+              <%= guest.first_name %> <%= guest.last_name %>
               <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
             </li>
 
@@ -49,7 +57,7 @@
       </ul>
       <% end %>
 
-    <div class="guest">
+    <div class="add-guest">
       <% if @user == @event.user %>
         <h3 class="text-center">Add Guest</h3>
         <div class="text-center">
@@ -71,6 +79,8 @@
   </div>
 </div>
 
+<br>
+
 <div class="row">
   <% if @locations.any? %>
     <% @locations.each do |location| %>
@@ -89,16 +99,29 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Modal Header</h4>
+                  <h3 class="modal-title"><%= location.name %></h3>
                 </div>
                 <div class="modal-body">
-                  <p>Some text in the modal.</p>
+                  <ul class="list-group">
+                    <% location.guests.each do |guest| %>
+                      <li class="list-group-item">
+                        <span class="modal-guest-name">
+                          <%= guest.user.first_name %> <%= guest.user.last_name %>
+                        </span>
+                        <span class="modal-room pull-right">
+                          Room <%= guest.rooms.where(location_id: location.id).first().room_number %>
+                        </span>
+                      </li>
+                    <% end %>
+                  </ul>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
-
+              <!-- <% location.guests.each do |guest| %>
+              <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
+              <% end %> -->
             </div>
           </div>
         </div>
@@ -115,9 +138,17 @@
   <% else %>
     <h3>You have no locations for this event</h3>
   <% end %>
-  <button type="button" class="btn btn-primary" id="apiButton">Find Hotels</button>
+  <br>
 </div>
 
+<div class="find-hotels text-center">
+  <h2>Not seeing a place you want to stay? Click here for a different hotel in the area!</h2>
+    <span class="find-hotels-button">
+      <button type="button" class="btn btn-primary" id="apiButton">Find Hotels</button>
+    </span>
+</div>
+
+<br>
 
 <script>
   handler = Gmaps.build('Google');
