@@ -43,7 +43,8 @@ class EventsController < ApplicationController
       if !@guest.rooms.where(event_id: @event.id).any?
         @locations.each do |location|
           @prices[location.name] = {}
-          response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+          response = @event.get_hotel_info(location)
+          # response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
           if response["HotelInfoList"]
             @prices[location.name]['price'] = "$" + response["HotelInfoList"]["HotelInfo"]["Price"]["TotalRate"]["Value"]
           else

@@ -21,4 +21,9 @@ class Event < ActiveRecord::Base
     return Guest.where(user_id: user.id, event_id: event_id)
   end
 
+  def get_hotel_info(location)
+    return  HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + self.start_date.strftime("%Y-%m-%d") + "," + self.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+
+  end
+
 end
