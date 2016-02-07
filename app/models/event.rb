@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
 
   def find_guest(user)
     event_id = self.id
-    return Guest.where(user_id: user.id, event_id: event_id)
+    return Guest.where(user_id: user.id, event_id: event_id).first
   end
 
   def get_hotel_info(location)

@@ -27,7 +27,8 @@ class LocationsController < ApplicationController
     else
       @start_date = @event.start_date
       @end_date = @event.end_date
-      @guest = @event.find_guest(@user).first.id
+      @guest = @event.find_guest(@user).id
+      binding.pry
       @room = Room.create(:start_date => @start_date, :end_date => @end_date, :location_id => @location.id, :event_id => @event.id, :guest_id => @guest)
       @room.save
       redirect_to user_event_path(@user, @event)
