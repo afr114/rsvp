@@ -36,11 +36,12 @@ class EventsController < ApplicationController
         @guests.push(user)
       end
     end
-    @guest = current_user.guests.where(event_id: @event.id).first()
+    @event_guest = current_user.guests.where(event_id: @event.id).first()
     #//look over here shannon!
-    if @guest
+    if @event_guest
       @prices = {}
-      if !@guest.rooms.where(event_id: @event.id).any?
+      if !@event.has_room(@event_guest)
+        binding.pry
         @locations.each do |location|
           @prices[location.name] = {}
           response = @event.get_hotel_info(location)

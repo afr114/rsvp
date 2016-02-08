@@ -41,9 +41,9 @@
       <div class="panel-heading"><h3>Guests</h3></div>
       <ul class="list-group guest-list">
         <% @guests.each do |guest| %>
-          <% if guest == @user && current_user %>
+          <% if guest == @user && !@event.has_room(@event_guest) %>
             <li class="list-group-item">
-              <%= guest.first_name %> <%= guest.last_name %>
+              <%= guest.first_name %>
               <%= link_to "Add My Travel Plans", new_event_location_path(@event), class: "btn btn-success pull-right btn-xs", id: "add-button" %>
             </li>
 
@@ -119,14 +119,11 @@
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
-              <!-- <% location.guests.each do |guest| %>
-              <h6><%= guest.user.first_name %> <%= guest.user.last_name %>, Room <%= guest.rooms.where(location_id: location.id).first().room_number %></h6>
-              <% end %> -->
             </div>
           </div>
         </div>
         <div class="col-xs-6 locations-right-table">
-          <% if @guest && !@guest.rooms.where(event_id: @event.id).any? %>
+          <% if @event_guest && !@event.has_room(@event_guest) %>
             <span class="estimated-price">Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <strong><%= @prices[location.name]['price'] %></strong></span>
             <% if @prices[location.name]['query'] %>
               <a href=<%= @prices[location.name]['query'] %> target="_blank"><button type="button" class="btn btn-primary pull-right">Book now</button></a>
@@ -142,7 +139,7 @@
 </div>
 
 <div class="find-hotels text-center">
-  <h2>Not seeing a place you want to stay? Click here for a different hotel in the area!</h2>
+  <h2>Don't see a place you like? Click here for a different hotel in the area!</h2>
     <span class="find-hotels-button">
       <button type="button" class="btn btn-primary" id="apiButton">Find Hotels</button>
     </span>

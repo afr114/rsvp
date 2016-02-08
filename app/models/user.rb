@@ -22,5 +22,4 @@ class User < ActiveRecord::Base
     end
     return attending
   end
-
 end
