@@ -6,6 +6,8 @@ By Aileen Cacayorin, Shannon Mulloy, Abdul Rahimi, Jake Glassman, and Austin Kin
 ###Description
 An event manager for those times when many loved-ones all come together off different flights. Finalist at Expedia Seattle Hackathon 2016.
 
+** A live demo was originally built in two days for the hackaton submission and can be viewed here: (http://rsvp-list.herokuapp.com/). The project is now ongoing.
+
 Here are the users' stories:
 * [Complete] User signs up with RSVP: The PREMIER event manager.
 * [Complete] User creates a new event for a gathering.
@@ -16,7 +18,7 @@ Here are the users' stories:
 * [Complete] If Guest adds a new location, it is added to the Event as a new lodging location.
 * [Complete] If a guest wants to search for a
 
-The live demo was built over two days time. Peep the [live demo](http://rsvp-list.herokuapp.com/)
+
 
 ###Setup
 1. Clone the repo
