@@ -89,10 +89,10 @@
           <%= location.name %>
         </div>
         <div class="col-xs-3 table-location-name">
-          <button type="button" data-toggle="modal" data-target="#location-modal" class="btn btn-success">Who's staying here?</button>
+          <button type="button" data-toggle="modal" data-target="#location-modal-<%=location.id%>" class="btn btn-success">Who's staying here?</button>
 
           <!-- Modal -->
-          <div id="location-modal" class="modal fade" role="dialog">
+          <div id="location-modal-<%=location.id%>" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
               <!-- Modal content-->
