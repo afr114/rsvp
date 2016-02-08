@@ -29,4 +29,8 @@ class Event < ActiveRecord::Base
     return guest.rooms.where(event_id: self.id).any?
   end
 
+  def expedia_url(location)
+    return 'https://www.expedia.com/' + location.city + '-Hotels-' + location.name.split(' ').join('-') + '.h' +    location.hotelid + '.Hotel-Information?chkin=' + self.start_date.strftime("%m").to_s + '%2F' + self.start_date.strftime("%d").to_s + '%2F' + self.start_date.strftime("%Y").to_s + '&chkout=' + self.end_date.strftime("%m").to_s + '%2F' + self.end_date.strftime("%d").to_s + '%2F' + self.end_date.strftime("%Y").to_s
+  end
+
 end

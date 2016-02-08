@@ -41,7 +41,6 @@ class EventsController < ApplicationController
     if @event_guest
       @prices = {}
       if !@event.has_room(@event_guest)
-        binding.pry
         @locations.each do |location|
           @prices[location.name] = {}
           response = @event.get_hotel_info(location)
@@ -51,7 +50,7 @@ class EventsController < ApplicationController
             @prices[location.name]['price'] = "Unavailable"
           end
           if @prices[location.name]['price'] != "Unavailable"
-            @prices[location.name]['query'] = 'https://www.expedia.com/' + location.city + '-Hotels-' + location.name.split(' ').join('-') + '.h' + location.hotelid + '.Hotel-Information?chkin=' + @event.start_date.strftime("%m").to_s + '%2F' + @event.start_date.strftime("%d").to_s + '%2F' + @event.start_date.strftime("%Y").to_s + '&chkout=' + @event.end_date.strftime("%m").to_s + '%2F' + @event.end_date.strftime("%d").to_s + '%2F' + @event.end_date.strftime("%Y").to_s
+            @prices[location.name]['query'] = @event.expedia_url(location)
           else
             @prices[location.name]['query'] = nil
           end
