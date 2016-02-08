@@ -11,4 +11,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def attending
+    attending = []
+    user_id = self.id
+    guests = Guest.where(user_id: user_id)
+    guests.each do |guest|
+      event = guest.event
+      attending.push(event)
+    end
+    return attending
+  end
 end

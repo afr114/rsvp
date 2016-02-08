@@ -36,21 +36,21 @@ class EventsController < ApplicationController
         @guests.push(user)
       end
     end
-    @guest = current_user.guests.where(event_id: @event.id).first()
+    @event_guest = current_user.guests.where(event_id: @event.id).first()
     #//look over here shannon!
-    if @guest
+    if @event_guest
       @prices = {}
-      if !@guest.rooms.where(event_id: @event.id).any?
+      if !@event.has_room(@event_guest)
         @locations.each do |location|
           @prices[location.name] = {}
-          response = HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + @event.start_date.strftime("%Y-%m-%d") + "," + @event.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+          response = @event.get_hotel_info(location)
           if response["HotelInfoList"]
             @prices[location.name]['price'] = "$" + response["HotelInfoList"]["HotelInfo"]["Price"]["TotalRate"]["Value"]
           else
             @prices[location.name]['price'] = "Unavailable"
           end
           if @prices[location.name]['price'] != "Unavailable"
-            @prices[location.name]['query'] = 'https://www.expedia.com/' + location.city + '-Hotels-' + location.name.split(' ').join('-') + '.h' + location.hotelid + '.Hotel-Information?chkin=' + @event.start_date.strftime("%m").to_s + '%2F' + @event.start_date.strftime("%d").to_s + '%2F' + @event.start_date.strftime("%Y").to_s + '&chkout=' + @event.end_date.strftime("%m").to_s + '%2F' + @event.end_date.strftime("%d").to_s + '%2F' + @event.end_date.strftime("%Y").to_s
+            @prices[location.name]['query'] = @event.expedia_url(location)
           else
             @prices[location.name]['query'] = nil
           end
