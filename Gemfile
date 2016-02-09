@@ -43,17 +43,26 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec-rails'
   gem 'launchy'
   gem 'pry'
   gem 'faker'
 end
 
 group :test do
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'simplecov', require: false
   gem 'poltergeist'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'factory_girl_rails'
+  gem 'shoulda_create'
+  gem 'timecop'
+  gem 'mocha',              require: 'mocha/mini_test'
+  gem 'libxml-ruby'
+  gem 'rspec-rails'
+  gem 'database_rewinder'
+  gem 'email_spec'
 end

@@ -19,11 +19,38 @@
     src: url(/assets/black.ttf) format("truetype");
 }
 
+<<<<<<< HEAD
 
 .white {
   color: white;
 }
 
+=======
+.main-backdrop {
+  font-family: gravity;
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  height: 900px;
+  background-attachment: fixed;
+}
+
+.navbar-brand {
+  font-family: stackyard;
+  font-size: 4em;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border: 0px;
+  background-color: #d9d9d9;
+  border-radius: 0px;
+}
+
+#about {
+  background-color: #e68a00;
+}
+>>>>>>> 978146de1cde07c04e1e52fe22fe11834465db40
 
 .about-well {
   margin-top: 50px;
@@ -42,7 +69,7 @@ html, body {
   padding: 0;
 }
 #map {
-  height: 400px;
+  height: 570px;
 }
 
 
@@ -82,6 +109,25 @@ html, body {
   font-size: 1.5em;
   line-height: 180%;
   list-style: none;
+}
+
+.location-list {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.guest-list {
+  max-height: 400px;
+  overflow-y:scroll;
+}
+
+.table-location-name {
+  margin-top: 30px;
+  font-size: 150%;
+}
+
+.locations-right-table {
+  margin-top: 30px;
 }
 
 .add-event {

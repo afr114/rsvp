@@ -18,7 +18,19 @@ class Event < ActiveRecord::Base
 
   def find_guest(user)
     event_id = self.id
-    return Guest.where(user_id: user.id, event_id: event_id)
+    return Guest.where(user_id: user.id, event_id: event_id).first
+  end
+
+  def get_hotel_info(location)
+    return  HTTParty.get("http://terminal2.expedia.com/x/hotels?hotelids=" + location.hotelid + "&dates=" + self.start_date.strftime("%Y-%m-%d") + "," + self.end_date.strftime("%Y-%m-%d") + "&apikey=" + "3FD8jYfm0LbZsxOcVZ66f89vByNPKXQB")
+  end
+
+  def has_room(guest)
+    return guest.rooms.where(event_id: self.id).any?
+  end
+
+  def expedia_url(location)
+    return 'https://www.expedia.com/' + location.city + '-Hotels-' + location.name.split(' ').join('-') + '.h' +    location.hotelid + '.Hotel-Information?chkin=' + self.start_date.strftime("%m").to_s + '%2F' + self.start_date.strftime("%d").to_s + '%2F' + self.start_date.strftime("%Y").to_s + '&chkout=' + self.end_date.strftime("%m").to_s + '%2F' + self.end_date.strftime("%d").to_s + '%2F' + self.end_date.strftime("%Y").to_s
   end
 
 end

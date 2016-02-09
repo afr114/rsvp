@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :locations
-  end
-
-
-  resources :events do
     resources :guests
   end
 
