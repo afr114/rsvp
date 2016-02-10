@@ -35,6 +35,11 @@
   border-width: 2px;
 }
 
+.landing-button :hover {
+  background-color:white;
+  color:black;
+}
+
 @media (max-width: 480px) {
   .sign-up {
     bottom: 10%;
