@@ -155,9 +155,12 @@ html, body {
   list-style: none;
 }
 
-.location-list {
-  max-height: 400px;
-  overflow-y: scroll;
+#location-list {
+  display: none;
+}
+
+#hide-locations {
+  display: none;
 }
 
 .guest-list {
