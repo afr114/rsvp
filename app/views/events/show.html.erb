@@ -4,7 +4,33 @@
   <div class="col-md-6">
     <div class="well event-description">
       <span class="description-header">Event Description</span>
-      <p><%= @event.description %></p>
+      <p>
+        <%= @event.description_preview %>
+        <% if @event.description_preview.length > 299  %>
+        ... <button type="button" class="btn glyphicon glyphicon-plus" data-toggle="modal" data-target="#description-modal"></button>
+
+          <!-- Modal -->
+          <div id="description-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title"><%= @event.title %></h4>
+                </div>
+                <div class="modal-body">
+                  <p><%= @event.description %></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+      </p>
     </div>
   </div>
   <div class="col-md-6">
@@ -83,57 +109,61 @@
 
 <div class="row">
   <% if @locations.any? %>
-    <% @locations.each do |location| %>
-      <li class="list-group-item clearfix">
-        <div class="col-xs-3 table-location-name">
-          <%= location.name %>
-        </div>
-        <div class="col-xs-3 table-location-name">
-          <button type="button" data-toggle="modal" data-target="#location-modal-<%=location.id%>" class="btn btn-success">Who's staying here?</button>
+  <button id="show-locations" class="btn btn-lg">Show Locations</button>
+  <button id="hide-locations" class="btn btn-lg">Hide Locations</button>
+    <div id="location-list">
+      <% @locations.each do |location| %>
+        <li class="list-group-item clearfix">
+          <div class="col-xs-3 table-location-name">
+            <%= location.name %>
+          </div>
+          <div class="col-xs-3 table-location-name">
+            <button type="button" data-toggle="modal" data-target="#location-modal-<%=location.id%>" class="btn btn-success">Who's staying here?</button>
 
-          <!-- Modal -->
-          <div id="location-modal-<%=location.id%>" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <!-- Modal -->
+            <div id="location-modal-<%=location.id%>" class="modal fade" role="dialog">
+              <div class="modal-dialog">
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h3 class="modal-title"><%= location.name %></h3>
-                </div>
-                <div class="modal-body">
-                  <ul class="list-group">
-                    <% location.guests.each do |guest| %>
-                      <li class="list-group-item">
-                        <span class="modal-guest-name">
-                          <%= guest.user.first_name %> <%= guest.user.last_name %>
-                        </span>
-                        <span class="modal-room pull-right">
-                          Room <%= guest.rooms.where(location_id: location.id).first().room_number %>
-                        </span>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><%= location.name %></h3>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="list-group">
+                      <% location.guests.each do |guest| %>
+                        <li class="list-group-item">
+                          <span class="modal-guest-name">
+                            <%= guest.user.first_name %> <%= guest.user.last_name %>
+                          </span>
+                          <span class="modal-room pull-right">
+                            Room <%= guest.rooms.where(location_id: location.id).first().room_number %>
+                          </span>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xs-6 locations-right-table">
-          <% if @event_guest && !@event.has_room(@event_guest) %>
-            <span class="estimated-price">Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <strong><%= @prices[location.name]['price'] %></strong></span>
-            <% if @prices[location.name]['query'] %>
-              <a href=<%= @prices[location.name]['query'] %> target="_blank"><button type="button" class="btn btn-primary pull-right">Book now</button></a>
+          <div class="col-xs-6 locations-right-table">
+            <% if @event_guest && !@event.has_room(@event_guest) %>
+              <span class="estimated-price">Estimated Price for <%= distance_of_time_in_words(@event.start_date, @event.end_date) %>: <strong><%= @prices[location.name]['price'] %></strong></span>
+              <% if @prices[location.name]['query'] %>
+                <a href=<%= @prices[location.name]['query'] %> target="_blank"><button type="button" class="btn btn-primary pull-right">Book now</button></a>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  <% else %>
-    <h3>You have no locations for this event</h3>
+          </div>
+        </li>
+      <% end %>
+    <% else %>
+      <h3>You have no locations for this event</h3>
+  </div>
   <% end %>
   <br>
 </div>
